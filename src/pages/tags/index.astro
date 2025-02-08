@@ -1,0 +1,27 @@
+---
+import Tag from "../../components/Tag.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const pageTitle = "Tag Index";
+
+const allPosts = Object.values(
+    import.meta.glob("../posts/*.md", { eager: true }),
+);
+const tags = [
+    ...new Set(allPosts.map((post: any) => post.frontmatter?.tags).flat()),
+];
+---
+<style>
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+    }
+</style>
+<BaseLayout pageTitle={pageTitle}>
+    <div class="tags">
+        {
+            tags.map((tag) => (
+                <Tag url={`/tags/${tag}`} tag={tag} />
+            ))
+        }
+    </div>
+</BaseLayout>

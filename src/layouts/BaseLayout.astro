@@ -4,7 +4,6 @@ import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 const { pageTitle } = Astro.props;
 ---
-
 <!doctype html>
 <html lang="en">
     <head>
@@ -13,11 +12,16 @@ const { pageTitle } = Astro.props;
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
         <title>{pageTitle}</title>
+        <style>
+            .title {
+                text-transform: capitalize;
+            }
+        </style>
     </head>
     <body>
         <Header />
 
-        <h1>{pageTitle}</h1>
+        <h1 class="title">{pageTitle}</h1>
 
         <slot />
         <Footer />
